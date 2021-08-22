@@ -6,6 +6,7 @@ class AuthorResource(Resource):
     def get(self, id):
         author = AuthorModel.query.get(id)
         if author:
+            author.regdate = author.regdate.strftime('%d-%m-%Y')
             return author.to_dict(), 200
         return {"message": f"quote with id={id} not found"}, 404
 
